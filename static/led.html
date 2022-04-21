@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>led</title>
+
+
+    <!-- Add Vue and Bootstrap-Vue JS just before the closing </body> tag -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link type="text/css" rel="stylesheet" href="/bootstrap-vue.min.css"/>
+    <script src="/bootstrap-vue.min.js"></script>
+
+    <!-- Add Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- Add jquery and popper -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+    <style type="text/css">
+      body {
+        background: black;
+      }
+      .horizontal {
+        margin-left: 30px;
+        width: 80px;
+        height: 30px;
+        border: 1px solid black;
+      }
+      .verticalcontainer {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: row;
+      }
+      .num_led {
+        margin: 20px 20px;
+      }
+      .vertical {
+        width: 30px;
+        height: 80px;
+        border: 1px solid black;
+      }
+      .empty {
+        width: 80px;
+        height: 80px;
+        background: black;
+      }
+      .selected {
+        background: #f8f9fa;
+      }
+      .unselected {
+        background: #353a3f;
+      }
+      .output {
+        width: 900px;
+        padding: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <div v-for="(led, index) in leds" v-bind:key="led.id" class="verticalcontainer">
+        <b-button v-on:click="leds.splice(index,0,newled())">+</b-button>
+        <div class="num_led">
+          <div class="horizontal" v-bind:class="{ selected : led.a0, unselected: !led.a0 }" v-on:click="led.a0 = !led.a0"></div>
+          <div class="verticalcontainer">
+            <div class="vertical" v-bind:class="{ selected : led.a5, unselected: !led.a5 }" v-on:click="led.a5 = !led.a5"></div>
+            <div class="empty"></div>
+            <div class="vertical" v-bind:class="{ selected : led.a6, unselected: !led.a6 }" v-on:click="led.a6 = !led.a6"></div>
+          </div>
+          <div class="horizontal" v-bind:class="{ selected : led.a1, unselected: !led.a1 }" v-on:click="led.a1 = !led.a1"></div>
+          <div class="verticalcontainer">
+            <div class="vertical" v-bind:class="{ selected : led.a4, unselected: !led.a4 }" v-on:click="led.a4 = !led.a4"></div>
+            <div class="empty"></div>
+            <div class="vertical" v-bind:class="{ selected : led.a2, unselected: !led.a2 }" v-on:click="led.a2 = !led.a2"></div>
+          </div>
+          <div class="horizontal" v-bind:class="{ selected : led.a3, unselected: !led.a3 }" v-on:click="led.a3 = !led.a3"></div>
+        </div>
+        <div class="num_led">
+          <div class="horizontal" v-bind:class="{ selected : led.a8, unselected: !led.a8 }" v-on:click="led.a8 = !led.a8"></div>
+          <div class="verticalcontainer">
+            <div class="vertical" v-bind:class="{ selected : led.a13, unselected: !led.a13 }" v-on:click="led.a13 = !led.a13"></div>
+            <div class="empty"></div>
+            <div class="vertical" v-bind:class="{ selected : led.a14, unselected: !led.a14 }" v-on:click="led.a14 = !led.a14"></div>
+          </div>
+          <div class="horizontal" v-bind:class="{ selected : led.a9, unselected: !led.a9 }" v-on:click="led.a9 = !led.a9"></div>
+          <div class="verticalcontainer">
+            <div class="vertical" v-bind:class="{ selected : led.a12, unselected: !led.a12 }" v-on:click="led.a12 = !led.a12"></div>
+            <div class="empty"></div>
+            <div class="vertical" v-bind:class="{ selected : led.a10, unselected: !led.a10 }" v-on:click="led.a10 = !led.a10"></div>
+          </div>
+          <div class="horizontal" v-bind:class="{ selected : led.a11, unselected: !led.a11 }" v-on:click="led.a11 = !led.a11"></div>
+        </div>
+        <div class="num_led">
+          <div class="horizontal" v-bind:class="{ selected : led.a16, unselected: !led.a16 }" v-on:click="led.a16 = !led.a16"></div>
+          <div class="verticalcontainer">
+            <div class="vertical" v-bind:class="{ selected : led.a21, unselected: !led.a21 }" v-on:click="led.a21 = !led.a21"></div>
+            <div class="empty"></div>
+            <div class="vertical" v-bind:class="{ selected : led.a22, unselected: !led.a22 }" v-on:click="led.a22 = !led.a22"></div>
+          </div>
+          <div class="horizontal" v-bind:class="{ selected : led.a17, unselected: !led.a17 }" v-on:click="led.a17 = !led.a17"></div>
+          <div class="verticalcontainer">
+            <div class="vertical" v-bind:class="{ selected : led.a20, unselected: !led.a20 }" v-on:click="led.a20 = !led.a20"></div>
+            <div class="empty"></div>
+            <div class="vertical" v-bind:class="{ selected : led.a18, unselected: !led.a18 }" v-on:click="led.a18 = !led.a18"></div>
+          </div>
+          <div class="horizontal" v-bind:class="{ selected : led.a19, unselected: !led.a19 }" v-on:click="led.a19 = !led.a19"></div>
+        </div>
+        <div class="num_led">
+          <div class="horizontal" v-bind:class="{ selected : led.a24, unselected: !led.a24 }" v-on:click="led.a24 = !led.a24"></div>
+          <div class="verticalcontainer">
+            <div class="vertical" v-bind:class="{ selected : led.a29, unselected: !led.a29 }" v-on:click="led.a29 = !led.a29"></div>
+            <div class="empty"></div>
+            <div class="vertical" v-bind:class="{ selected : led.a25, unselected: !led.a25 }" v-on:click="led.a25 = !led.a25"></div>
+          </div>
+          <div class="horizontal" v-bind:class="{ selected : led.a30, unselected: !led.a30 }" v-on:click="led.a30 = !led.a30"></div>
+          <div class="verticalcontainer">
+            <div class="vertical" v-bind:class="{ selected : led.a28, unselected: !led.a28 }" v-on:click="led.a28 = !led.a28"></div>
+            <div class="empty"></div>
+            <div class="vertical" v-bind:class="{ selected : led.a26, unselected: !led.a26 }" v-on:click="led.a26 = !led.a26"></div>
+          </div>
+          <div class="horizontal" v-bind:class="{ selected : led.a27, unselected: !led.a27 }" v-on:click="led.a27 = !led.a27"></div>
+        </div>
+        <b-button v-on:click="leds.splice(index,1)">-</b-button>
+      </div>
+      <b-button v-on:click="leds.push(newled())">add after</b-button>
+
+
+      <div class="output">
+      <b-form-textarea
+        id="textarea-small"
+        size="sm"
+        v-model="text"
+        placeholder="LED command..."
+      ></b-form-textarea>
+      </div>
+    </div>
+
+    <script>
+      newled = function () {
+        return {
+          a0: false,
+          a1: false,
+          a2: false,
+          a3: false,
+          a4: false,
+          a5: false,
+          a6: false,
+          a7: false,
+          a8: false,
+          a9: false,
+          a10: false,
+          a11: false,
+          a12: false,
+          a13: false,
+          a14: false,
+          a15: false,
+          a16: false,
+          a17: false,
+          a18: false,
+          a19: false,
+          a20: false,
+          a21: false,
+          a22: false,
+          a23: false,
+          a24: false,
+          a25: false,
+          a26: false,
+          a27: false,
+          a28: false,
+          a29: false,
+          a30: false,
+          a31: false,
+        };
+      }
+      leds = [newled()];
+
+
+      new Vue({
+        el: '#app',
+        data: {
+          leds: leds
+        },
+        methods: {
+          newled() {
+            return newled()
+          }
+        },
+        computed: {
+          text: function() {
+            ret = "";
+            for (x in this.leds) {
+              line = "";
+              led = leds[x];
+              for (k in led) {
+                if (led[k]) {
+                  line += "8";
+                } else {
+                  line += "0";
+                }
+              }
+              ret += "\{ \"" + line.substr(0, 8) + "\", ";
+              ret += "\"" + line.substr(8, 8) + "\", ";
+              ret += "\"" + line.substr(16, 8) + "\", ";
+              ret += "\"" + line.substr(24, 8) + "\", \},\n";
+            }
+            return ret;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
