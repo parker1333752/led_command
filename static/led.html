@@ -65,66 +65,10 @@
     <div id="app">
       <div v-for="(led, index) in leds" v-bind:key="led.id" class="verticalcontainer">
         <b-button v-on:click="leds.splice(index,0,newled())">+</b-button>
-        <div class="num_led">
-          <div class="horizontal" v-bind:class="{ selected : led.a0, unselected: !led.a0 }" v-on:click="led.a0 = !led.a0"></div>
-          <div class="verticalcontainer">
-            <div class="vertical" v-bind:class="{ selected : led.a5, unselected: !led.a5 }" v-on:click="led.a5 = !led.a5"></div>
-            <div class="empty"></div>
-            <div class="vertical" v-bind:class="{ selected : led.a1, unselected: !led.a1 }" v-on:click="led.a1 = !led.a1"></div>
-          </div>
-          <div class="horizontal" v-bind:class="{ selected : led.a6, unselected: !led.a6 }" v-on:click="led.a6 = !led.a6"></div>
-          <div class="verticalcontainer">
-            <div class="vertical" v-bind:class="{ selected : led.a4, unselected: !led.a4 }" v-on:click="led.a4 = !led.a4"></div>
-            <div class="empty"></div>
-            <div class="vertical" v-bind:class="{ selected : led.a2, unselected: !led.a2 }" v-on:click="led.a2 = !led.a2"></div>
-          </div>
-          <div class="horizontal" v-bind:class="{ selected : led.a3, unselected: !led.a3 }" v-on:click="led.a3 = !led.a3"></div>
-        </div>
-        <div class="num_led">
-          <div class="horizontal" v-bind:class="{ selected : led.a8, unselected: !led.a8 }" v-on:click="led.a8 = !led.a8"></div>
-          <div class="verticalcontainer">
-            <div class="vertical" v-bind:class="{ selected : led.a13, unselected: !led.a13 }" v-on:click="led.a13 = !led.a13"></div>
-            <div class="empty"></div>
-            <div class="vertical" v-bind:class="{ selected : led.a9, unselected: !led.a9 }" v-on:click="led.a9 = !led.a9"></div>
-          </div>
-          <div class="horizontal" v-bind:class="{ selected : led.a14, unselected: !led.a14 }" v-on:click="led.a14 = !led.a14"></div>
-          <div class="verticalcontainer">
-            <div class="vertical" v-bind:class="{ selected : led.a12, unselected: !led.a12 }" v-on:click="led.a12 = !led.a12"></div>
-            <div class="empty"></div>
-            <div class="vertical" v-bind:class="{ selected : led.a10, unselected: !led.a10 }" v-on:click="led.a10 = !led.a10"></div>
-          </div>
-          <div class="horizontal" v-bind:class="{ selected : led.a11, unselected: !led.a11 }" v-on:click="led.a11 = !led.a11"></div>
-        </div>
-        <div class="num_led">
-          <div class="horizontal" v-bind:class="{ selected : led.a16, unselected: !led.a16 }" v-on:click="led.a16 = !led.a16"></div>
-          <div class="verticalcontainer">
-            <div class="vertical" v-bind:class="{ selected : led.a21, unselected: !led.a21 }" v-on:click="led.a21 = !led.a21"></div>
-            <div class="empty"></div>
-            <div class="vertical" v-bind:class="{ selected : led.a17, unselected: !led.a17 }" v-on:click="led.a17 = !led.a17"></div>
-          </div>
-          <div class="horizontal" v-bind:class="{ selected : led.a22, unselected: !led.a22 }" v-on:click="led.a22 = !led.a22"></div>
-          <div class="verticalcontainer">
-            <div class="vertical" v-bind:class="{ selected : led.a20, unselected: !led.a20 }" v-on:click="led.a20 = !led.a20"></div>
-            <div class="empty"></div>
-            <div class="vertical" v-bind:class="{ selected : led.a18, unselected: !led.a18 }" v-on:click="led.a18 = !led.a18"></div>
-          </div>
-          <div class="horizontal" v-bind:class="{ selected : led.a19, unselected: !led.a19 }" v-on:click="led.a19 = !led.a19"></div>
-        </div>
-        <div class="num_led">
-          <div class="horizontal" v-bind:class="{ selected : led.a24, unselected: !led.a24 }" v-on:click="led.a24 = !led.a24"></div>
-          <div class="verticalcontainer">
-            <div class="vertical" v-bind:class="{ selected : led.a29, unselected: !led.a29 }" v-on:click="led.a29 = !led.a29"></div>
-            <div class="empty"></div>
-            <div class="vertical" v-bind:class="{ selected : led.a25, unselected: !led.a25 }" v-on:click="led.a25 = !led.a25"></div>
-          </div>
-          <div class="horizontal" v-bind:class="{ selected : led.a30, unselected: !led.a30 }" v-on:click="led.a30 = !led.a30"></div>
-          <div class="verticalcontainer">
-            <div class="vertical" v-bind:class="{ selected : led.a28, unselected: !led.a28 }" v-on:click="led.a28 = !led.a28"></div>
-            <div class="empty"></div>
-            <div class="vertical" v-bind:class="{ selected : led.a26, unselected: !led.a26 }" v-on:click="led.a26 = !led.a26"></div>
-          </div>
-          <div class="horizontal" v-bind:class="{ selected : led.a27, unselected: !led.a27 }" v-on:click="led.a27 = !led.a27"></div>
-        </div>
+        <number-led :a0.sync="led.a0" :a1.sync="led.a1" :a2.sync="led.a2" :a3.sync="led.a3" :a4.sync="led.a4" :a5.sync="led.a5" :a6.sync="led.a6" :a7.sync="led.a7"></number-led>
+        <number-led :a0.sync="led.a8" :a1.sync="led.a9" :a2.sync="led.a10" :a3.sync="led.a11" :a4.sync="led.a12" :a5.sync="led.a13" :a6.sync="led.a14" :a7.sync="led.a15"></number-led>
+        <number-led :a0.sync="led.a16" :a1.sync="led.a17" :a2.sync="led.a18" :a3.sync="led.a19" :a4.sync="led.a20" :a5.sync="led.a21" :a6.sync="led.a22" :a7.sync="led.a23"></number-led>
+        <number-led :a0.sync="led.a24" :a1.sync="led.a25" :a2.sync="led.a26" :a3.sync="led.a27" :a4.sync="led.a28" :a5.sync="led.a29" :a6.sync="led.a30" :a7.sync="led.a31"></number-led>
         <b-button v-on:click="leds.splice(index,1)">-</b-button>
       </div>
       <b-button v-on:click="leds.push(newled())">add after</b-button>
@@ -141,6 +85,7 @@
       </div>
     </div>
 
+    <script type="text/javascript" src="/number-led.js"></script>
     <script>
       newled = function () {
         return {
